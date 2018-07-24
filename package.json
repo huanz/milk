@@ -1,0 +1,40 @@
+{
+  "name": "milk",
+  "version": "1.0.0",
+  "description": "milk tea shop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js -- "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huanz/milk.git"
+  },
+  "keywords": [
+    "shop",
+    "tea",
+    "milk"
+  ],
+  "author": "bukas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huanz/milk/issues"
+  },
+  "homepage": "https://github.com/huanz/milk#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "leancloud-storage": "^3.9.0",
+    "leanengine": "^3.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
