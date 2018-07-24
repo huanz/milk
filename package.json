@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/huanz/milk#readme",
   "dependencies": {
+    "@koa/cors": "^2.2.2",
     "ejs": "^2.6.1",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
