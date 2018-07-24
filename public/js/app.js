@@ -70,7 +70,46 @@
         }
     };
     const Order = {
-        template: `Order`
+        template: `
+            <div>
+                <h2>当日订单</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>产品</th>
+                            <th>数量</th>
+                            <th>备注</th>
+                            <th>总价</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in list">
+                            <td>{{item.name}}</td>
+                            <td>{{item.product.name}}</td>
+                            <td>{{item.number}}</td>
+                            <td>{{item.remark}}</td>
+                            <td>{{item.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `,
+        data() {
+            return {
+                list: []
+            };
+        },
+        created: function () {
+            this.getList();
+        },
+        methods: {
+            getList: function () {
+                axios.get(apis.orderList).then(res => {
+                    this.list = res.data.data;
+                });
+            }
+        }
     };
 
     const routes = [
