@@ -80,11 +80,14 @@
             },
             deleteOrder: function (id, index) {
                 var _this = this;
-                axios.post(apis.delete, {id: id}).then(function(res) {
-                    if (res.data.code === 0) {
-                        _this.list.splice(index, 1);
-                    }
-                });
+                var item = this.list[index];
+                if (confirm('确定要删除订单【' + item.name + '-' + item.product.name + '】么？')) {
+                    axios.post(apis.delete, {id: id}).then(function(res) {
+                        if (res.data.code === 0) {
+                            _this.list.splice(index, 1);
+                        }
+                    });
+                }
             }
         }
     };
