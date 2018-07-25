@@ -70,6 +70,15 @@ router.get('/product/list', async (ctx) => {
         return res;
     });
     ctx.body = success(result);
+}).post('/order/delete', async (ctx) => {
+    let id = ctx.request.body.id;
+    if (!id) {
+        ctx.body = success(null, 1, '参数错误');
+        return false;
+    }
+    let order = AV.Object.createWithoutData('Order', id);
+    await order.destroy();
+    ctx.body = success();
 });
 
 module.exports = router;
