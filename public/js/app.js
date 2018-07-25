@@ -30,8 +30,13 @@
                 });
             },
             order: function () {
+                var _this = this;
                 axios.post(apis.submit, this.params).then(function(res) {
-                    alert(res.data.code === 0 ? '下单成功' : '下单失败');
+                    var success = res.data.code === 0;
+                    alert(success ? '下单成功' : '下单失败');
+                    if (success) {
+                        _this.$router.push('/order');
+                    }
                 });
             }
         }
