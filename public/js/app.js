@@ -52,30 +52,8 @@
             getList: function () {
                 var _this = this;
                 axios.get(apis.orderList).then(function(res) {
-                    var list = res.data.data;
-                    var obj = {};
-                    var price = 0;
-                    var arr = [];
-
-                    _this.list = list;
-                    
-                    list.forEach(function (item) {
-                        var product = item.product;
-                        if (!obj[product.id]) {
-                            obj[product.id] = {
-                                name: product.name,
-                                count: 0
-                            };
-                        }
-                        obj[product.id].count += item.number;
-                        price += item.price;
-                    });
-
-                    for (var key in obj) {
-                        arr.push(obj[key].name + ' * ' + obj[key].count);
-                    }
-                    _this.statistics = arr.join('<br>');
-                    _this.price = price;
+                    _this.list = res.data.data;
+                    _this.calc();
                 });
             },
             deleteOrder: function (id, index) {
@@ -85,9 +63,35 @@
                     axios.post(apis.delete, {id: id}).then(function(res) {
                         if (res.data.code === 0) {
                             _this.list.splice(index, 1);
+                            _this.calc();
                         }
                     });
                 }
+            },
+            calc: function () {
+                var list = this.list;
+                var obj = {};
+                var price = 0;
+                var arr = [];
+                
+                list.forEach(function (item) {
+                    var product = item.product;
+                    if (!obj[product.id]) {
+                        obj[product.id] = {
+                            name: product.name,
+                            count: 0
+                        };
+                    }
+                    obj[product.id].count += item.number;
+                    price += item.price;
+                });
+
+                for (var key in obj) {
+                    arr.push(obj[key].name + ' * ' + obj[key].count);
+                }
+
+                this.statistics = arr.join('<br>');
+                this.price = price;
             }
         }
     };
