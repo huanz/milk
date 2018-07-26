@@ -42,7 +42,7 @@
         }
     };
     var Order = {
-        template: '<div><h2>当日订单&nbsp;&nbsp;<router-link to="/">去点餐</router-link>&nbsp;&nbsp;<a class="text-primary" href="javascript:;" v-on:click.prevent="show = !show">{{show ? "隐藏" : "显示"}}删除</a></h2><table class="table"><thead><tr><th>姓名</th><th>产品</th><th>数量</th><th>备注</th><th>总价</th><th v-show="show">操作</th></tr></thead><tbody><tr v-for="(item, index) in list"><td>{{item.name}}</td><td>{{item.product.name}}</td><td>{{item.number}}</td><td>{{item.remark}}</td><td>{{item.price}}</td><td v-show="show"><a class="text-danger" href="javascript:;" v-on:click.prevent="deleteOrder(item.id, index)">删除</a></td></tr><tr><td colspan=6>&nbsp;&nbsp;</td></tr><tr><td>合计</td><td colspan=4 v-html="statistics"></td><td>{{price}}</td></tr></tbody></table></div>',
+        template: '<div><h2>当日订单&nbsp;&nbsp;<router-link to="/">去点餐</router-link>&nbsp;&nbsp;<a class="text-primary" href="javascript:;" v-on:click.prevent="show = !show">{{show ? "隐藏" : "显示"}}删除</a></h2><table class="table"><thead><tr><th>姓名</th><th>产品</th><th>数量</th><th>备注</th><th>总价</th><th v-show="show">操作</th></tr></thead><tbody><tr v-for="(item, index) in list"><td>{{item.name}}</td><td>{{item.product.name}}</td><td>{{item.number}}</td><td>{{item.remark}}</td><td>{{item.price}}</td><td v-show="show"><a class="text-danger" href="javascript:;" v-on:click.prevent="deleteOrder(item.id, index)">删除</a></td></tr><tr><td :colspan="show ? 6 : 5">&nbsp;&nbsp;</td></tr><tr><td>合计</td><td :colspan="show ? 4 : 3" v-html="statistics"></td><td>{{price}}</td></tr></tbody></table></div>',
         data: function () {
             return {
                 list: [],
